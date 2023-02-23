@@ -4,14 +4,15 @@ require "fileutils"
 task :default => :clean do
   mac_os = (/darwin/ =~ RUBY_PLATFORM) != nil
   if mac_os
-    if `uname -m`.strip == 'x64_64'
-      ENV["CPPFLAGS"] = "-I/usr/local/opt/openssl/include"
-      ENV["LDFLAGS"] = "-L/usr/local/opt/openssl/lib"
-      lib_path = File.join('/','usr','local','opt','librdkafka','lib','librdkafka.1.dylib')
-    else
+    case `uname -m`.strip
+    when 'arm64'
       ENV["CPPFLAGS"] = "-I/opt/homebrew/opt/openssl@1.1/include"
       ENV["LDFLAGS"] = "-L/opt/homebrew/opt/openssl@1.1/lib"
       lib_path = File.join('/','opt','homebrew','opt','librdkafka','lib','librdkafka.1.dylib')
+    else
+      ENV["CPPFLAGS"] = "-I/usr/local/opt/openssl/include"
+      ENV["LDFLAGS"] = "-L/usr/local/opt/openssl/lib"
+      lib_path = File.join('/','usr','local','opt','librdkafka','lib','librdkafka.1.dylib')
     end
     FileUtils.cp(lib_path, File.join(File.dirname(__FILE__), "librdkafka.dylib"))
   else
