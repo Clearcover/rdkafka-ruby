@@ -1,3 +1,9 @@
+# archive note
+
+at one point ~2019 Clearcover needed to fork this gem to add kafka working in `reznor` we are back on a direct gem
+
+<https://github.com/Clearcover/reznor/commit/00c4e9802c51f590df9359b78198e0ae4ad943a0#diff-d09ea66f8227784ff4393d88a19836f321c915ae10031d16c93d67e6283ab55f>
+
 # Rdkafka
 
 [![Build Status](https://travis-ci.org/appsignal/rdkafka-ruby.svg?branch=master)](https://travis-ci.org/appsignal/rdkafka-ruby)
